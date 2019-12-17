@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if ticker %}
+	{{ ticker }}
+{% endif %}
+
+
+<!-- aba kun api bata data liney, views.py bata tanera lyaune as follows-->
+
+<!-- api.[key diney] harek json file ma csv file huncha with key ani tesko value. for eg 'symbol': 'AAPL', 'companyName': 'Apple, Inc.' ma 'symbol': 'APPL' vaneko key, ani 'companyName': 'Apple,Inc' vaneko tesko value-->
+
+<!--{{ api }} -->
+
+{% if api %} 
+	{% if api == "Error..." %}
+		There was a problem with ticker.. Pls try again..
+	{% else %}
+
+		<h1> {{ api.companyName }} </h1> <br/>
+		Price: ${{ api.latestPrice }} <br/>
+		Previous Close: {{ api.previousClose }} <br/>
+		MarketCap: {{ api.marketCap }} <br/>
+		Year to Date Change: {{ api.ytdChange }} <br/>
+		Week 52 High: {{ api.week52High }} <br/>
+		Week 52 Low: {{ api.week52Low }} <br/>
+	{% endif %}
+
+
+{% else %}
+	do something else
+
+{% endif %}
+
+
+{% endblock %}
